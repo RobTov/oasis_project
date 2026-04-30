@@ -12,14 +12,16 @@ class Command(BaseCommand):
 
         admin_user = User.objects.create_user(
             username='admin',
-            name='Admin User',
+            first_name='Admin',
+            last_name='User',
             email='admin@oasis.com',
             password='admin123',
             role='administrator'
         )
         client_user = User.objects.create_user(
             username='jsmith',
-            name='John Smith',
+            first_name='John',
+            last_name='Smith',
             email='john@client.com',
             password='client123',
             role='client'

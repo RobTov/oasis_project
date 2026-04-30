@@ -10,6 +10,7 @@ A full-stack web application for **Oasis Promotions Agency** - a modern, minimal
 - [Features](#features)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
+- [Seeding Sample Data](#seeding-sample-data)
 - [API Endpoints](#api-endpoints)
 - [License](#license)
 
@@ -176,6 +177,39 @@ The frontend will be available at `http://localhost:5173/`
 make frontend-build
 ```
 
+## Seeding Sample Data
+
+Populate the database with sample data for testing:
+
+```bash
+make seed
+```
+
+This creates:
+- **2 Users**: admin (`admin123`) and client (`client123`)
+- **3 Clients**: TechCorp, Fashionista, HealthPlus
+- **4 Services**: Digital Marketing, Brand Identity, Social Media, SEO
+- **3 Projects**: Website Redesign, Brand Campaign, SEO
+- **3 Team Members**: Creative Director, Marketing Lead, SEO Specialist
+- **3 Blog Posts**: Marketing, Design, SEO articles
+- **2 Testimonials**, **2 Contacts**, **2 Campaigns**, **3 Subscribers**
+
+### Quick Start
+
+```bash
+# Complete setup with sample data
+make setup
+make seed
+
+# Run backend
+make run
+
+# In another terminal, run frontend
+make frontend-run
+```
+
+Visit `http://localhost:5173/` to see the application.
+
 ## API Endpoints
 
 ### Authentication
@@ -212,8 +246,6 @@ make run
 # In another terminal, run frontend
 make frontend-run
 ```
-
-Visit `http://localhost:5173/` to see the application.
 
 ## License
 

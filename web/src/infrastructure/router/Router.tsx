@@ -10,6 +10,13 @@ import { DashboardPage } from '../../presentation/pages/dashboard/DashboardPage'
 import { AdminServicesPage } from '../../presentation/pages/admin/AdminServicesPage';
 import { AdminProjectsPage } from '../../presentation/pages/admin/AdminProjectsPage';
 import { AdminBlogsPage } from '../../presentation/pages/admin/AdminBlogsPage';
+import { AdminClientsPage } from '../../presentation/pages/admin/AdminClientsPage';
+import { AdminTeamPage } from '../../presentation/pages/admin/AdminTeamPage';
+import { AdminCampaignsPage } from '../../presentation/pages/admin/AdminCampaignsPage';
+import { AdminSubscribersPage } from '../../presentation/pages/admin/AdminSubscribersPage';
+import { AdminTestimonialsPage } from '../../presentation/pages/admin/AdminTestimonialsPage';
+import { AdminContactsPage } from '../../presentation/pages/admin/AdminContactsPage';
+import { AdminUsersPage } from '../../presentation/pages/admin/AdminUsersPage';
 import { LoadingSpinner } from '../../presentation/components/common/LoadingSpinner';
 
 function ProtectedRoute({ children, requireAdmin = false }: { children: React.ReactNode; requireAdmin?: boolean }) {
@@ -55,6 +62,13 @@ export function Router() {
           <Route path="services" element={<AdminServicesPage />} />
           <Route path="projects" element={<AdminProjectsPage />} />
           <Route path="blogs" element={<AdminBlogsPage />} />
+          <Route path="clients" element={<AdminClientsPage />} />
+          <Route path="team" element={<AdminTeamPage />} />
+          <Route path="campaigns" element={<AdminCampaignsPage />} />
+          <Route path="subscribers" element={<AdminSubscribersPage />} />
+          <Route path="testimonials" element={<AdminTestimonialsPage />} />
+          <Route path="contacts" element={<AdminContactsPage />} />
+          <Route path="users" element={<AdminUsersPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

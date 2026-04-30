@@ -1,6 +1,6 @@
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { LayoutDashboard, LogOut, ChevronRight, Wrench, FolderKanban, FileText, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, LogOut, ChevronRight, Wrench, FolderKanban, FileText, ArrowLeft, Users, UserCheck, Megaphone, Mail, MessageSquare, UserCog } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export function AdminLayout() {
@@ -16,6 +16,13 @@ export function AdminLayout() {
     { to: '/admin/services', label: 'Services', icon: Wrench },
     { to: '/admin/projects', label: 'Projects', icon: FolderKanban },
     { to: '/admin/blogs', label: 'Blog Posts', icon: FileText },
+    { to: '/admin/clients', label: 'Clients', icon: Users },
+    { to: '/admin/team', label: 'Team', icon: UserCheck },
+    { to: '/admin/campaigns', label: 'Campaigns', icon: Megaphone },
+    { to: '/admin/subscribers', label: 'Subscribers', icon: Mail },
+    { to: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare },
+    { to: '/admin/contacts', label: 'Contacts', icon: Mail },
+    { to: '/admin/users', label: 'Users', icon: UserCog },
   ];
 
   return (

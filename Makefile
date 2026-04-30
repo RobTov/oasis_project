@@ -7,12 +7,13 @@ help:
 	@echo "  make setup             Initial project setup (install + migrate)"
 	@echo "  make migrate           Run database migrations"
 	@echo "  make migrate-make      Create new migrations"
+	@echo "  make seed              Populate database with sample data"
 	@echo "  make run               Run backend server (SQLite)"
 	@echo "  make run-postgres      Run backend server (PostgreSQL)"
 	@echo "  make superuser         Create admin superuser"
 	@echo "  make frontend-install  Install frontend dependencies"
 	@echo "  make frontend-run      Run frontend dev server"
-	@echo "  make frontend-build     Build frontend for production"
+	@echo "  make frontend-build    Build frontend for production"
 	@echo "  make test              Run backend tests"
 	@echo "  make lint              Run linting"
 	@echo "  make clean             Remove build artifacts"
@@ -32,6 +33,9 @@ migrate:
 
 migrate-make:
 	USE_SQLITE=true python3 manage.py makemigrations
+
+seed:
+	USE_SQLITE=true python3 manage.py seed
 
 run:
 	USE_SQLITE=true python3 manage.py runserver
