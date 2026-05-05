@@ -13,16 +13,16 @@ export function AdminLayout() {
   };
 
   const navItems = [
-    { to: '/admin/services', label: 'Services', icon: Wrench },
-    { to: '/admin/projects', label: 'Projects', icon: FolderKanban },
-    { to: '/admin/blogs', label: 'Blog Posts', icon: FileText },
-    { to: '/admin/clients', label: 'Clients', icon: Users },
-    { to: '/admin/team', label: 'Team', icon: UserCheck },
-    { to: '/admin/campaigns', label: 'Campaigns', icon: Megaphone },
-    { to: '/admin/subscribers', label: 'Subscribers', icon: Mail },
-    { to: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare },
-    { to: '/admin/contacts', label: 'Contacts', icon: Mail },
-    { to: '/admin/users', label: 'Users', icon: UserCog },
+    { to: '/admin/services', label: 'Servicios', icon: Wrench },
+    { to: '/admin/projects', label: 'Proyectos', icon: FolderKanban },
+    { to: '/admin/blogs', label: 'Publicaciones del Blog', icon: FileText },
+    { to: '/admin/clients', label: 'Clientes', icon: Users },
+    { to: '/admin/team', label: 'Equipo', icon: UserCheck },
+    { to: '/admin/campaigns', label: 'Campañas', icon: Megaphone },
+    { to: '/admin/subscribers', label: 'Suscriptores', icon: Mail },
+    { to: '/admin/testimonials', label: 'Testimonios', icon: MessageSquare },
+    { to: '/admin/contacts', label: 'Contactos', icon: Mail },
+    { to: '/admin/users', label: 'Usuarios', icon: UserCog },
   ];
 
   return (
@@ -33,7 +33,7 @@ export function AdminLayout() {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg"></div>
             <div>
               <span className="text-xl font-bold">Oasis</span>
-              <p className="text-xs text-slate-400">Admin Panel</p>
+              <p className="text-xs text-slate-400">Panel de Administración</p>
             </div>
           </Link>
         </div>
@@ -64,7 +64,7 @@ export function AdminLayout() {
             className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg transition-colors mb-2"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Dashboard
+            Volver al Panel
           </Link>
           <div className="mb-4 px-4">
             <p className="text-sm font-medium">{user?.name || user?.username}</p>
@@ -75,7 +75,7 @@ export function AdminLayout() {
             className="flex items-center gap-3 w-full px-4 py-3 text-slate-300 hover:bg-red-500 hover:text-white rounded-lg transition-colors"
           >
             <LogOut className="w-5 h-5" />
-            Logout
+            Cerrar sesión
           </button>
         </div>
       </aside>
@@ -85,7 +85,7 @@ export function AdminLayout() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <LayoutDashboard className="w-4 h-4" />
-              <span>Admin</span>
+              <span>Administración</span>
               <ChevronRight className="w-4 h-4" />
               <span className="text-gray-900">{navItems.find(n => window.location.pathname.startsWith(n.to))?.label}</span>
             </div>

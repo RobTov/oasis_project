@@ -9,10 +9,10 @@ import { campaignRepository, clientRepository, serviceRepository } from '../../.
 import type { Campaign, CampaignCreate } from '../../../domain/entities';
 
 const campaignSchema = z.object({
-  client: z.string().min(1, 'Client is required'),
-  service: z.string().min(1, 'Service is required'),
-  start_date: z.string().min(1, 'Start date is required'),
-  end_date: z.string().min(1, 'End date is required'),
+  client: z.string().min(1, 'El cliente es obligatorio'),
+  service: z.string().min(1, 'El servicio es obligatorio'),
+  start_date: z.string().min(1, 'La fecha de inicio es obligatoria'),
+  end_date: z.string().min(1, 'La fecha de fin es obligatoria'),
 });
 
 type CampaignForm = z.infer<typeof campaignSchema>;
@@ -117,28 +117,28 @@ export function AdminCampaignsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Campaigns</h1>
-          <p className="text-gray-500 mt-1">Manage your marketing campaigns</p>
+          <h1 className="text-2xl font-bold text-gray-900">Campañas</h1>
+          <p className="text-gray-500 mt-1">Gestiona tus campañas de marketing</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add Campaign
+          Añadir Campaña
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Client</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Service</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Start Date</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">End Date</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Cliente</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Servicio</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Fecha de inicio</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Fecha de fin</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -169,7 +169,7 @@ export function AdminCampaignsPage() {
                 {(!campaigns || campaigns.length === 0) && (
                   <tr>
                     <td colSpan={5} className="py-8 text-center text-gray-500">
-                      No campaigns yet. Create your first campaign.
+                      No hay campañas aún. Crea tu primera campaña.
                     </td>
                   </tr>
                 )}
@@ -179,31 +179,31 @@ export function AdminCampaignsPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingCampaign ? 'Edit Campaign' : 'Add Campaign'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingCampaign ? 'Editar Campaña' : 'Añadir Campaña'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Select label="Client" options={clientOptions} {...register('client')} error={errors.client?.message} />
-          <Select label="Service" options={serviceOptions} {...register('service')} error={errors.service?.message} />
-          <Input label="Start Date" type="date" {...register('start_date')} error={errors.start_date?.message} />
-          <Input label="End Date" type="date" {...register('end_date')} error={errors.end_date?.message} />
+          <Select label="Cliente" options={clientOptions} {...register('client')} error={errors.client?.message} />
+          <Select label="Servicio" options={serviceOptions} {...register('service')} error={errors.service?.message} />
+          <Input label="Fecha de inicio" type="date" {...register('start_date')} error={errors.start_date?.message} />
+          <Input label="Fecha de fin" type="date" {...register('end_date')} error={errors.end_date?.message} />
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingCampaign ? 'Update' : 'Create'}
+              {editingCampaign ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Campaign">
-        <p className="text-gray-600 mb-6">Are you sure you want to delete this campaign? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Campaña">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar esta campaña? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>

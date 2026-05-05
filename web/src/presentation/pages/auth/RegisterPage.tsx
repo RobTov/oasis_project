@@ -7,12 +7,12 @@ import { Input, Button } from '../../components/common';
 import { useState } from 'react';
 
 const registerSchema = z.object({
-  username: z.string().min(3, 'Username must be at least 3 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  username: z.string().min(3, 'El usuario debe tener al menos 3 caracteres'),
+  email: z.string().email('Correo electrónico inválido'),
+  password: z.string().min(8, 'La contraseña debe tener al menos 8 caracteres'),
   password_confirm: z.string(),
 }).refine((data) => data.password === data.password_confirm, {
-  message: "Passwords don't match",
+  message: "Las contraseñas no coinciden",
   path: ['password_confirm'],
 });
 
@@ -37,7 +37,7 @@ export function RegisterPage() {
       await registerUser(data);
       navigate('/dashboard');
     } catch (err: unknown) {
-      setError('Registration failed. Please try again.');
+      setError('El registro falló. Por favor, inténtalo de nuevo.');
     }
   };
 
@@ -45,8 +45,8 @@ export function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center pt-16 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create an account</h1>
-          <p className="text-gray-600">Join Oasis Promotions Agency today</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Crear una cuenta</h1>
+          <p className="text-gray-600">Únete a Oasis Promotions Agency hoy</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
@@ -58,46 +58,46 @@ export function RegisterPage() {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <Input
-              label="Username"
-              placeholder="Choose a username"
+              label="Usuario"
+              placeholder="Elige un nombre de usuario"
               {...register('username')}
               error={errors.username?.message}
             />
 
             <Input
-              label="Email"
+              label="Correo electrónico"
               type="email"
-              placeholder="Enter your email"
+              placeholder="Ingresa tu correo electrónico"
               {...register('email')}
               error={errors.email?.message}
             />
 
             <Input
-              label="Password"
+              label="Contraseña"
               type="password"
-              placeholder="Create a password"
+              placeholder="Crea una contraseña"
               {...register('password')}
               error={errors.password?.message}
             />
 
             <Input
-              label="Confirm Password"
+              label="Confirmar Contraseña"
               type="password"
-              placeholder="Confirm your password"
+              placeholder="Confirma tu contraseña"
               {...register('password_confirm')}
               error={errors.password_confirm?.message}
             />
 
             <Button type="submit" className="w-full" isLoading={isSubmitting}>
-              Create Account
+              Crear Cuenta
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Already have an account?{' '}
+              ¿Ya tienes una cuenta?{' '}
               <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
-                Sign in
+                Iniciar sesión
               </Link>
             </p>
           </div>

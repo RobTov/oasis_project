@@ -9,8 +9,8 @@ import { subscriberRepository } from '../../../data/repositories';
 import type { Subscriber, SubscriberCreate } from '../../../domain/entities';
 
 const subscriberSchema = z.object({
-  email: z.string().email('Invalid email'),
-  date: z.string().min(1, 'Date is required'),
+  email: z.string().email('Correo electrónico inválido'),
+  date: z.string().min(1, 'La fecha es obligatoria'),
 });
 
 type SubscriberForm = z.infer<typeof subscriberSchema>;
@@ -93,26 +93,26 @@ export function AdminSubscribersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Subscribers</h1>
-          <p className="text-gray-500 mt-1">Manage newsletter subscribers</p>
+          <h1 className="text-2xl font-bold text-gray-900">Suscriptores</h1>
+          <p className="text-gray-500 mt-1">Gestiona los suscriptores del boletín</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add Subscriber
+          Añadir Suscriptor
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Email</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Subscribed</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Correo electrónico</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Suscrito</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,7 +148,7 @@ export function AdminSubscribersPage() {
                 {(!subscribers || subscribers.length === 0) && (
                   <tr>
                     <td colSpan={3} className="py-8 text-center text-gray-500">
-                      No subscribers yet.
+                      No hay suscriptores aún.
                     </td>
                   </tr>
                 )}
@@ -158,29 +158,29 @@ export function AdminSubscribersPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingSubscriber ? 'Edit Subscriber' : 'Add Subscriber'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingSubscriber ? 'Editar Suscriptor' : 'Añadir Suscriptor'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Email" type="email" placeholder="subscriber@email.com" {...register('email')} error={errors.email?.message} />
-          <Input label="Date" type="date" {...register('date')} error={errors.date?.message} />
+          <Input label="Correo electrónico" type="email" placeholder="suscriptor@correo.com" {...register('email')} error={errors.email?.message} />
+          <Input label="Fecha" type="date" {...register('date')} error={errors.date?.message} />
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingSubscriber ? 'Update' : 'Create'}
+              {editingSubscriber ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Subscriber">
-        <p className="text-gray-600 mb-6">Are you sure you want to remove this subscriber? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Suscriptor">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar este suscriptor? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>

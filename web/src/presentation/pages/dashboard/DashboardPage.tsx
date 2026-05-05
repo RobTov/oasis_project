@@ -35,12 +35,12 @@ export function DashboardPage() {
   });
 
   const stats = [
-    { label: 'Services', value: services?.length ?? 0, icon: Wrench, color: 'blue' },
-    { label: 'Projects', value: projects?.length ?? 0, icon: Briefcase, color: 'green' },
-    { label: 'Blog Posts', value: blogs?.length ?? 0, icon: FileText, color: 'purple' },
-    { label: 'Clients', value: clients?.length ?? 0, icon: Building2, color: 'orange' },
-    { label: 'Team Members', value: team?.length ?? 0, icon: Users, color: 'pink' },
-    { label: 'Campaigns', value: campaigns?.length ?? 0, icon: Megaphone, color: 'cyan' },
+    { label: 'Servicios', value: services?.length ?? 0, icon: Wrench, color: 'blue' },
+    { label: 'Proyectos', value: projects?.length ?? 0, icon: Briefcase, color: 'green' },
+    { label: 'Publicaciones del Blog', value: blogs?.length ?? 0, icon: FileText, color: 'purple' },
+    { label: 'Clientes', value: clients?.length ?? 0, icon: Building2, color: 'orange' },
+    { label: 'Miembros del Equipo', value: team?.length ?? 0, icon: Users, color: 'pink' },
+    { label: 'Campañas', value: campaigns?.length ?? 0, icon: Megaphone, color: 'cyan' },
   ];
 
   const colorMap: Record<string, string> = {
@@ -55,8 +55,8 @@ export function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-        <p className="text-gray-500 mt-1">Overview of your Oasis Promotions Agency</p>
+        <h1 className="text-2xl font-bold text-gray-900">Panel de Control</h1>
+        <p className="text-gray-500 mt-1">Resumen de tu Agencia de Promociones Oasis</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -76,7 +76,7 @@ export function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card title="Recent Services" icon={Wrench}>
+        <Card title="Servicios Recientes" icon={Wrench}>
           <div className="space-y-4">
             {services?.slice(0, 5).map((service) => (
               <div key={service.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
@@ -88,12 +88,12 @@ export function DashboardPage() {
               </div>
             ))}
             {(!services || services.length === 0) && (
-              <p className="text-gray-500 text-center py-4">No services yet</p>
+              <p className="text-gray-500 text-center py-4">Aún no hay servicios</p>
             )}
           </div>
         </Card>
 
-        <Card title="Recent Projects" icon={Briefcase}>
+        <Card title="Proyectos Recientes" icon={Briefcase}>
           <div className="space-y-4">
             {projects?.slice(0, 5).map((project) => (
               <div key={project.id} className="py-2 border-b border-gray-100 last:border-0">
@@ -102,12 +102,12 @@ export function DashboardPage() {
               </div>
             ))}
             {(!projects || projects.length === 0) && (
-              <p className="text-gray-500 text-center py-4">No projects yet</p>
+              <p className="text-gray-500 text-center py-4">Aún no hay proyectos</p>
             )}
           </div>
         </Card>
 
-        <Card title="Latest Blog Posts" icon={FileText}>
+        <Card title="Últimas Publicaciones del Blog" icon={FileText}>
           <div className="space-y-4">
             {blogs?.slice(0, 5).map((blog) => (
               <div key={blog.id} className="py-2 border-b border-gray-100 last:border-0">
@@ -116,12 +116,12 @@ export function DashboardPage() {
               </div>
             ))}
             {(!blogs || blogs.length === 0) && (
-              <p className="text-gray-500 text-center py-4">No blog posts yet</p>
+              <p className="text-gray-500 text-center py-4">Aún no hay publicaciones</p>
             )}
           </div>
         </Card>
 
-        <Card title="Our Team" icon={Users}>
+        <Card title="Nuestro Equipo" icon={Users}>
           <div className="space-y-4">
             {team?.slice(0, 5).map((member) => (
               <div key={member.id} className="flex items-center gap-4 py-2 border-b border-gray-100 last:border-0">
@@ -139,7 +139,7 @@ export function DashboardPage() {
               </div>
             ))}
             {(!team || team.length === 0) && (
-              <p className="text-gray-500 text-center py-4">No team members yet</p>
+              <p className="text-gray-500 text-center py-4">Aún no hay miembros del equipo</p>
             )}
           </div>
         </Card>

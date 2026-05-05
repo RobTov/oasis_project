@@ -13,7 +13,7 @@ export function DashboardLayout() {
   };
 
   const navItems = [
-    { to: '/dashboard', label: 'Overview', icon: LayoutDashboard },
+    { to: '/dashboard', label: 'Resumen', icon: LayoutDashboard },
   ];
 
   return (
@@ -59,7 +59,7 @@ export function DashboardLayout() {
             className="flex items-center gap-3 w-full px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
           >
             <LogOut className="w-5 h-5" />
-            Logout
+            Cerrar sesión
           </button>
         </div>
       </aside>
@@ -68,9 +68,9 @@ export function DashboardLayout() {
         <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-gray-100 px-8 py-4 z-20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span>Dashboard</span>
+              <span>Panel</span>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-gray-900">Overview</span>
+              <span className="text-gray-900">Resumen</span>
             </div>
           </div>
         </header>

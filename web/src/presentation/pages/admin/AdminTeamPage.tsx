@@ -9,10 +9,10 @@ import { teamRepository } from '../../../data/repositories';
 import type { Team, TeamCreate } from '../../../domain/entities';
 
 const teamSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  role: z.string().min(1, 'Role is required'),
-  bio: z.string().min(1, 'Bio is required'),
-  url_picture: z.string().url('Invalid URL').optional().or(z.literal('')),
+  name: z.string().min(1, 'El nombre es obligatorio'),
+  role: z.string().min(1, 'El cargo es obligatorio'),
+  bio: z.string().min(1, 'La biografía es obligatoria'),
+  url_picture: z.string().url('URL inválida').optional().or(z.literal('')),
 });
 
 type TeamForm = z.infer<typeof teamSchema>;
@@ -106,27 +106,27 @@ export function AdminTeamPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Team</h1>
-          <p className="text-gray-500 mt-1">Manage your team members</p>
+          <h1 className="text-2xl font-bold text-gray-900">Equipo</h1>
+          <p className="text-gray-500 mt-1">Gestiona los miembros del equipo</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add Member
+          Añadir Miembro
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Member</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Role</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Bio</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Miembro</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Cargo</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Biografía</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,7 +171,7 @@ export function AdminTeamPage() {
                 {(!team || team.length === 0) && (
                   <tr>
                     <td colSpan={4} className="py-8 text-center text-gray-500">
-                      No team members yet. Add your first member.
+                      No hay miembros en el equipo. Añade tu primer miembro.
                     </td>
                   </tr>
                 )}
@@ -181,31 +181,31 @@ export function AdminTeamPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingTeam ? 'Edit Member' : 'Add Member'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingTeam ? 'Editar Miembro' : 'Añadir Miembro'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Name" placeholder="Full name" {...register('name')} error={errors.name?.message} />
-          <Input label="Role" placeholder="e.g., Developer, Designer" {...register('role')} error={errors.role?.message} />
-          <Input label="Profile Picture URL" placeholder="https://..." {...register('url_picture')} error={errors.url_picture?.message} />
-          <Textarea label="Bio" placeholder="Short bio..." rows={4} {...register('bio')} error={errors.bio?.message} />
+          <Input label="Nombre" placeholder="Nombre completo" {...register('name')} error={errors.name?.message} />
+          <Input label="Cargo" placeholder="Ej., Desarrollador, Diseñador" {...register('role')} error={errors.role?.message} />
+          <Input label="URL de la foto de perfil" placeholder="https://..." {...register('url_picture')} error={errors.url_picture?.message} />
+          <Textarea label="Biografía" placeholder="Breve biografía..." rows={4} {...register('bio')} error={errors.bio?.message} />
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingTeam ? 'Update' : 'Create'}
+              {editingTeam ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Member">
-        <p className="text-gray-600 mb-6">Are you sure you want to remove this team member? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Miembro">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar a este miembro del equipo? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>

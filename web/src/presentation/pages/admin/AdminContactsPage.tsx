@@ -27,24 +27,24 @@ export function AdminContactsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Contacts</h1>
-          <p className="text-gray-500 mt-1">View and manage contact inquiries</p>
+          <h1 className="text-2xl font-bold text-gray-900">Contactos</h1>
+          <p className="text-gray-500 mt-1">Visualiza y gestiona las consultas de contacto</p>
         </div>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Name</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Email</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Message</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Date</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Nombre</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Correo electrónico</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Mensaje</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Fecha</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,7 +80,7 @@ export function AdminContactsPage() {
                 {(!contacts || contacts.length === 0) && (
                   <tr>
                     <td colSpan={5} className="py-8 text-center text-gray-500">
-                      No contact inquiries yet.
+                      No hay consultas de contacto aún.
                     </td>
                   </tr>
                 )}
@@ -90,42 +90,42 @@ export function AdminContactsPage() {
         )}
       </Card>
 
-      <Modal isOpen={!!viewingContact} onClose={() => setViewingContact(null)} title="Contact Details">
+      <Modal isOpen={!!viewingContact} onClose={() => setViewingContact(null)} title="Detalles del Contacto">
         {viewingContact && (
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Name</label>
+              <label className="text-sm font-medium text-gray-500">Nombre</label>
               <p className="mt-1 text-gray-900">{viewingContact.name}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Email</label>
+              <label className="text-sm font-medium text-gray-500">Correo electrónico</label>
               <p className="mt-1 text-gray-900">{viewingContact.email}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Date</label>
+              <label className="text-sm font-medium text-gray-500">Fecha</label>
               <p className="mt-1 text-gray-900">{new Date(viewingContact.date).toLocaleDateString()}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">Message</label>
+              <label className="text-sm font-medium text-gray-500">Mensaje</label>
               <p className="mt-1 text-gray-900 whitespace-pre-wrap">{viewingContact.message}</p>
             </div>
             <div className="flex gap-3 pt-4">
               <Button variant="secondary" onClick={() => setViewingContact(null)} className="flex-1">
-                Close
+                Cerrar
               </Button>
             </div>
           </div>
         )}
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Contact">
-        <p className="text-gray-600 mb-6">Are you sure you want to delete this contact inquiry? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Contacto">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar esta consulta de contacto? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>

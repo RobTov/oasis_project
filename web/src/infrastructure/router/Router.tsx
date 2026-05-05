@@ -6,6 +6,13 @@ import { AdminLayout } from '../../presentation/components/layout/AdminLayout';
 import { LoginPage } from '../../presentation/pages/auth/LoginPage';
 import { RegisterPage } from '../../presentation/pages/auth/RegisterPage';
 import { HomePage } from '../../presentation/pages/public/HomePage';
+import { ServicesPage } from '../../presentation/pages/public/ServicesPage';
+import { ProjectsPage } from '../../presentation/pages/public/ProjectsPage';
+import { CampaignsPage } from '../../presentation/pages/public/CampaignsPage';
+import { BlogPage } from '../../presentation/pages/public/BlogPage';
+import { TeamPage } from '../../presentation/pages/public/TeamPage';
+import { TestimonialsPage } from '../../presentation/pages/public/TestimonialsPage';
+import { ContactPage } from '../../presentation/pages/public/ContactPage';
 import { DashboardPage } from '../../presentation/pages/dashboard/DashboardPage';
 import { AdminServicesPage } from '../../presentation/pages/admin/AdminServicesPage';
 import { AdminProjectsPage } from '../../presentation/pages/admin/AdminProjectsPage';
@@ -36,6 +43,13 @@ export function Router() {
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/servicios" element={<ServicesPage />} />
+          <Route path="/proyectos" element={<ProjectsPage />} />
+          <Route path="/campanas" element={<CampaignsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/equipo" element={<TeamPage />} />
+          <Route path="/testimonios" element={<TestimonialsPage />} />
+          <Route path="/contacto" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>

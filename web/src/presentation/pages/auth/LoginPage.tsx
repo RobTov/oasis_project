@@ -7,8 +7,8 @@ import { Input, Button } from '../../components/common';
 import { useState } from 'react';
 
 const loginSchema = z.object({
-  username: z.string().min(1, 'Username is required'),
-  password: z.string().min(1, 'Password is required'),
+  username: z.string().min(1, 'El usuario es obligatorio'),
+  password: z.string().min(1, 'La contraseña es obligatoria'),
 });
 
 type LoginForm = z.infer<typeof loginSchema>;
@@ -32,7 +32,7 @@ export function LoginPage() {
       await login(data);
       navigate('/dashboard');
     } catch (err: unknown) {
-      setError('Invalid credentials. Please try again.');
+      setError('Credenciales inválidas. Por favor, inténtalo de nuevo.');
     }
   };
 
@@ -40,8 +40,8 @@ export function LoginPage() {
     <div className="min-h-screen flex items-center justify-center pt-16 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
-          <p className="text-gray-600">Sign in to your account to continue</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Bienvenido de nuevo</h1>
+          <p className="text-gray-600">Inicia sesión en tu cuenta para continuar</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
@@ -53,30 +53,30 @@ export function LoginPage() {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <Input
-              label="Username"
-              placeholder="Enter your username"
+              label="Usuario"
+              placeholder="Ingresa tu nombre de usuario"
               {...register('username')}
               error={errors.username?.message}
             />
 
             <Input
-              label="Password"
+              label="Contraseña"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Ingresa tu contraseña"
               {...register('password')}
               error={errors.password?.message}
             />
 
             <Button type="submit" className="w-full" isLoading={isSubmitting}>
-              Sign In
+              Iniciar Sesión
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              Don't have an account?{' '}
+              ¿No tienes una cuenta?{' '}
               <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
-                Sign up
+                Registrarse
               </Link>
             </p>
           </div>

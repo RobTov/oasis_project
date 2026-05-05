@@ -9,11 +9,11 @@ import { blogRepository } from '../../../data/repositories';
 import type { BlogPost, BlogPostCreate } from '../../../domain/entities';
 
 const blogSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  content: z.string().min(1, 'Content is required'),
-  category: z.string().min(1, 'Category is required'),
-  date_published: z.string().min(1, 'Date is required'),
-  author: z.string().min(1, 'Author is required'),
+  title: z.string().min(1, 'El título es obligatorio'),
+  content: z.string().min(1, 'El contenido es obligatorio'),
+  category: z.string().min(1, 'La categoría es obligatoria'),
+  date_published: z.string().min(1, 'La fecha es obligatoria'),
+  author: z.string().min(1, 'El autor es obligatorio'),
 });
 
 type BlogForm = z.infer<typeof blogSchema>;
@@ -110,28 +110,28 @@ export function AdminBlogsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Blog Posts</h1>
-          <p className="text-gray-500 mt-1">Manage your agency blog</p>
+          <h1 className="text-2xl font-bold text-gray-900">Publicaciones del Blog</h1>
+          <p className="text-gray-500 mt-1">Gestiona el blog de tu agencia</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add Blog Post
+          Agregar Publicación
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Title</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Author</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Category</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Date</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Título</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Autor</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Categoría</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Fecha</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -163,7 +163,7 @@ export function AdminBlogsPage() {
                 {(!blogs || blogs.length === 0) && (
                   <tr>
                     <td colSpan={5} className="py-8 text-center text-gray-500">
-                      No blog posts yet. Create your first post.
+                      Aún no hay publicaciones. Crea tu primera publicación.
                     </td>
                   </tr>
                 )}
@@ -173,27 +173,27 @@ export function AdminBlogsPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingBlog ? 'Edit Blog Post' : 'Add Blog Post'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingBlog ? 'Editar Publicación' : 'Agregar Publicación'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Title" placeholder="Blog post title" {...register('title')} error={errors.title?.message} />
-          <Input label="Author ID" type="number" placeholder="1" {...register('author')} error={errors.author?.message} />
-          <Input label="Category" placeholder="e.g., Marketing, Tips" {...register('category')} error={errors.category?.message} />
-          <Input label="Date Published" type="date" {...register('date_published')} error={errors.date_published?.message} />
-          <Textarea label="Content" placeholder="Write your blog content..." rows={6} {...register('content')} error={errors.content?.message} />
+          <Input label="Título" placeholder="Título de la publicación" {...register('title')} error={errors.title?.message} />
+          <Input label="ID del Autor" type="number" placeholder="1" {...register('author')} error={errors.author?.message} />
+          <Input label="Categoría" placeholder="ej. Marketing, Consejos" {...register('category')} error={errors.category?.message} />
+          <Input label="Fecha de Publicación" type="date" {...register('date_published')} error={errors.date_published?.message} />
+          <Textarea label="Contenido" placeholder="Escribe el contenido de tu publicación..." rows={6} {...register('content')} error={errors.content?.message} />
           <div className="flex gap-3 pt-4">
-            <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">Cancel</Button>
+            <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">Cancelar</Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingBlog ? 'Update' : 'Create'}
+              {editingBlog ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Blog Post">
-        <p className="text-gray-600 mb-6">Are you sure you want to delete this blog post? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Publicación">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar esta publicación? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
-          <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">Cancel</Button>
-          <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">Delete</Button>
+          <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">Cancelar</Button>
+          <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">Eliminar</Button>
         </div>
       </Modal>
     </div>

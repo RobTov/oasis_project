@@ -9,9 +9,9 @@ import { userRepository } from '../../../data/repositories';
 import type { User, UserCreate } from '../../../domain/entities';
 
 const userSchema = z.object({
-  username: z.string().min(1, 'Username is required'),
-  email: z.string().email('Invalid email'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  username: z.string().min(1, 'El nombre de usuario es obligatorio'),
+  email: z.string().email('Correo electrónico inválido'),
+  password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres'),
   role: z.enum(['administrator', 'client']),
 });
 
@@ -103,36 +103,36 @@ export function AdminUsersPage() {
   };
 
   const roleOptions = [
-    { value: 'client', label: 'Client' },
-    { value: 'administrator', label: 'Administrator' },
+    { value: 'client', label: 'Cliente' },
+    { value: 'administrator', label: 'Administrador' },
   ];
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Users</h1>
-          <p className="text-gray-500 mt-1">Manage system users</p>
+          <h1 className="text-2xl font-bold text-gray-900">Usuarios</h1>
+          <p className="text-gray-500 mt-1">Gestiona los usuarios del sistema</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add User
+          Añadir Usuario
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Username</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Email</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Name</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Role</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Nombre de usuario</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Correo electrónico</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Nombre</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Rol</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -171,7 +171,7 @@ export function AdminUsersPage() {
                 {(!users || users.length === 0) && (
                   <tr>
                     <td colSpan={5} className="py-8 text-center text-gray-500">
-                      No users yet. Create your first user.
+                      No hay usuarios aún. Crea tu primer usuario.
                     </td>
                   </tr>
                 )}
@@ -181,31 +181,31 @@ export function AdminUsersPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingUser ? 'Edit User' : 'Add User'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingUser ? 'Editar Usuario' : 'Añadir Usuario'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Username" placeholder="Username" {...register('username')} error={errors.username?.message} />
-          <Input label="Email" type="email" placeholder="user@email.com" {...register('email')} error={errors.email?.message} />
-          <Input label="Password" type="password" placeholder={editingUser ? 'Leave blank to keep current' : 'Min 6 characters'} {...register('password')} error={errors.password?.message} />
-          <Select label="Role" options={roleOptions} {...register('role')} error={errors.role?.message} />
+          <Input label="Nombre de usuario" placeholder="Nombre de usuario" {...register('username')} error={errors.username?.message} />
+          <Input label="Correo electrónico" type="email" placeholder="usuario@correo.com" {...register('email')} error={errors.email?.message} />
+          <Input label="Contraseña" type="password" placeholder={editingUser ? 'Dejar en blanco para mantener la actual' : 'Mínimo 6 caracteres'} {...register('password')} error={errors.password?.message} />
+          <Select label="Rol" options={roleOptions} {...register('role')} error={errors.role?.message} />
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingUser ? 'Update' : 'Create'}
+              {editingUser ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete User">
-        <p className="text-gray-600 mb-6">Are you sure you want to delete this user? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Usuario">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>

@@ -9,11 +9,11 @@ import { clientRepository } from '../../../data/repositories';
 import type { Client, ClientCreate } from '../../../domain/entities';
 
 const clientSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  company: z.string().min(1, 'Company is required'),
-  email: z.string().email('Invalid email'),
-  phone: z.string().min(1, 'Phone is required'),
-  sector: z.string().min(1, 'Sector is required'),
+  name: z.string().min(1, 'El nombre es obligatorio'),
+  company: z.string().min(1, 'La empresa es obligatoria'),
+  email: z.string().email('Correo electrónico inválido'),
+  phone: z.string().min(1, 'El teléfono es obligatorio'),
+  sector: z.string().min(1, 'El sector es obligatorio'),
 });
 
 type ClientForm = z.infer<typeof clientSchema>;
@@ -99,29 +99,29 @@ export function AdminClientsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Clients</h1>
-          <p className="text-gray-500 mt-1">Manage your agency clients</p>
+          <h1 className="text-2xl font-bold text-gray-900">Clientes</h1>
+          <p className="text-gray-500 mt-1">Gestiona los clientes de tu agencia</p>
         </div>
         <Button onClick={openCreateModal}>
           <Plus className="w-4 h-4 mr-2" />
-          Add Client
+          Agregar Cliente
         </Button>
       </div>
 
       <Card>
         {isLoading ? (
-          <div className="text-center py-8 text-gray-500">Loading...</div>
+          <div className="text-center py-8 text-gray-500">Cargando...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-100">
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Name</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Company</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Email</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Phone</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Nombre</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Empresa</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Correo Electrónico</th>
+                  <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Teléfono</th>
                   <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Sector</th>
-                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Actions</th>
+                  <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -157,7 +157,7 @@ export function AdminClientsPage() {
                 {(!clients || clients.length === 0) && (
                   <tr>
                     <td colSpan={6} className="py-8 text-center text-gray-500">
-                      No clients yet. Create your first client.
+                      Aún no hay clientes. Crea tu primer cliente.
                     </td>
                   </tr>
                 )}
@@ -167,32 +167,32 @@ export function AdminClientsPage() {
         )}
       </Card>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingClient ? 'Edit Client' : 'Add Client'}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={editingClient ? 'Editar Cliente' : 'Agregar Cliente'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input label="Name" placeholder="Client name" {...register('name')} error={errors.name?.message} />
-          <Input label="Company" placeholder="Company name" {...register('company')} error={errors.company?.message} />
-          <Input label="Email" type="email" placeholder="client@email.com" {...register('email')} error={errors.email?.message} />
-          <Input label="Phone" placeholder="Phone number" {...register('phone')} error={errors.phone?.message} />
-          <Input label="Sector" placeholder="e.g., Technology, Finance" {...register('sector')} error={errors.sector?.message} />
+          <Input label="Nombre" placeholder="Nombre del cliente" {...register('name')} error={errors.name?.message} />
+          <Input label="Empresa" placeholder="Nombre de la empresa" {...register('company')} error={errors.company?.message} />
+          <Input label="Correo Electrónico" type="email" placeholder="cliente@email.com" {...register('email')} error={errors.email?.message} />
+          <Input label="Teléfono" placeholder="Número de teléfono" {...register('phone')} error={errors.phone?.message} />
+          <Input label="Sector" placeholder="ej. Tecnología, Finanzas" {...register('sector')} error={errors.sector?.message} />
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="secondary" onClick={closeModal} className="flex-1">
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" isLoading={createMutation.isPending || updateMutation.isPending} className="flex-1">
-              {editingClient ? 'Update' : 'Create'}
+              {editingClient ? 'Actualizar' : 'Crear'}
             </Button>
           </div>
         </form>
       </Modal>
 
-      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Client">
-        <p className="text-gray-600 mb-6">Are you sure you want to delete this client? This action cannot be undone.</p>
+      <Modal isOpen={!!deleteId} onClose={() => setDeleteId(null)} title="Eliminar Cliente">
+        <p className="text-gray-600 mb-6">¿Estás seguro de que deseas eliminar este cliente? Esta acción no se puede deshacer.</p>
         <div className="flex gap-3">
           <Button variant="secondary" onClick={() => setDeleteId(null)} className="flex-1">
-            Cancel
+            Cancelar
           </Button>
           <Button variant="danger" onClick={() => deleteId && deleteMutation.mutate(deleteId)} isLoading={deleteMutation.isPending} className="flex-1">
-            Delete
+            Eliminar
           </Button>
         </div>
       </Modal>
