@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import type { User, LoginRequest, RegisterRequest } from '../../domain/entities';
+import type { User, LoginRequest, RegisterRequest, AuthResponse } from '../../domain/entities';
 import { authRepository } from '../../data/repositories';
 
 interface AuthContextType {
@@ -7,7 +7,7 @@ interface AuthContextType {
   isLoading: boolean;
   isAuthenticated: boolean;
   isAdmin: boolean;
-  login: (data: LoginRequest) => Promise<void>;
+  login: (data: LoginRequest) => Promise<AuthResponse>;
   register: (data: RegisterRequest) => Promise<void>;
   logout: () => void;
 }
@@ -36,6 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (data: LoginRequest) => {
     const response = await authRepository.login(data);
     setUser(response.user);
+    return response;
   };
 
   const register = async (data: RegisterRequest) => {

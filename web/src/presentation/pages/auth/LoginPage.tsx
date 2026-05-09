@@ -29,9 +29,9 @@ export function LoginPage() {
   const onSubmit = async (data: LoginForm) => {
     try {
       setError('');
-      await login(data);
-      navigate('/dashboard');
-    } catch (err: unknown) {
+      const response = await login(data);
+      navigate(response.user.role === 'administrator' ? '/admin' : '/dashboard');
+    } catch {
       setError('Credenciales inválidas. Por favor, inténtalo de nuevo.');
     }
   };

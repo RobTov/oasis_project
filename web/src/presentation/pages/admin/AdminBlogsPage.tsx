@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
-import { Card, Button, Input, Textarea, Modal } from '../../components/common';
-import { blogRepository } from '../../../data/repositories';
+import { Card, Button, Input, Textarea, Select, Modal } from '../../components/common';
+import { blogRepository, userRepository } from '../../../data/repositories';
 import type { BlogPost, BlogPostCreate } from '../../../domain/entities';
 
 const blogSchema = z.object({
@@ -28,6 +28,13 @@ export function AdminBlogsPage() {
     queryKey: ['blogs'],
     queryFn: blogRepository.getAll,
   });
+
+  const { data: users } = useQuery({
+    queryKey: ['users'],
+    queryFn: userRepository.getAll,
+  });
+
+  const authorOptions = users?.map(u => ({ value: u.id.toString(), label: `${u.name || u.username} (${u.email})` })) || [];
 
   const createMutation = useMutation({
     mutationFn: (data: BlogPostCreate) => blogRepository.create(data),
@@ -176,7 +183,7 @@ export function AdminBlogsPage() {
       <Modal isOpen={isModalOpen} onClose={closeModal} title={editingBlog ? 'Editar Publicación' : 'Agregar Publicación'}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input label="Título" placeholder="Título de la publicación" {...register('title')} error={errors.title?.message} />
-          <Input label="ID del Autor" type="number" placeholder="1" {...register('author')} error={errors.author?.message} />
+          <Select label="Autor" options={authorOptions} {...register('author')} error={errors.author?.message} />
           <Input label="Categoría" placeholder="ej. Marketing, Consejos" {...register('category')} error={errors.category?.message} />
           <Input label="Fecha de Publicación" type="date" {...register('date_published')} error={errors.date_published?.message} />
           <Textarea label="Contenido" placeholder="Escribe el contenido de tu publicación..." rows={6} {...register('content')} error={errors.content?.message} />

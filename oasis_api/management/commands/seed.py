@@ -19,225 +19,225 @@ class Command(BaseCommand):
             role='administrator'
         )
         client_user = User.objects.create_user(
-            username='jsmith',
-            first_name='Juan',
-            last_name='Pérez',
-            email='juan@cliente.com',
+            username='cliente1',
+            first_name='Sofía',
+            last_name='Ramírez',
+            email='sofia@email.com',
             password='cliente123',
             role='client'
         )
 
         client1 = Client.objects.create(
-            name='María García',
-            company='TechCorp Inc.',
-            email='maria@techcorp.com',
-            phone='+34 612 345 678',
+            name='Carolina Mendoza',
+            company='InnovaTech Solutions',
+            email='carolina@innovatech.com',
+            phone='+34 611 223 344',
             sector='Tecnología'
         )
         client2 = Client.objects.create(
-            name='Carlos López',
-            company='Fashionista Ltd.',
-            email='carlos@fashionista.com',
-            phone='+34 623 456 789',
+            name='Diego Castillo',
+            company='EstiloVivo',
+            email='diego@estilovivo.com',
+            phone='+34 622 334 455',
             sector='Moda'
         )
         client3 = Client.objects.create(
-            name='Ana Martínez',
-            company='HealthPlus',
-            email='ana@healthplus.com',
-            phone='+34 634 567 890',
+            name='Valentina Rojas',
+            company='BioVida Salud',
+            email='valentina@biovida.com',
+            phone='+34 633 445 566',
             sector='Salud'
         )
 
         service1 = Service.objects.create(
-            name='Marketing Digital',
-            description='Soluciones completas de marketing digital para empresas. Incluye gestión de redes sociales, publicidad online, email marketing y análisis de métricas para optimizar tus campañas.',
-            price=1500.00,
+            name='Marketing Digital Integral',
+            description='Estrategia completa de marketing digital que abarca SEO, SEM, redes sociales y email marketing. Ideal para empresas que buscan una presencia online sólida y resultados medibles.',
+            price=1800.00,
             category='Marketing'
         )
         service2 = Service.objects.create(
-            name='Identidad de Marca',
-            description='Diseño profesional de identidad de marca. Creamos logotipos, paletas de colores, tipografías y guías de estilo que reflejan la esencia de tu negocio.',
-            price=2500.00,
+            name='Creación de Marca',
+            description='Desarrollamos la identidad visual de tu negocio desde cero: logotipo, papelería corporativa, manual de marca y estrategia de posicionamiento.',
+            price=2200.00,
             category='Diseño'
         )
         service3 = Service.objects.create(
-            name='Gestión de Redes Sociales',
-            description='Gestión completa de cuentas en redes sociales. Creación de contenido, programación de publicaciones, interacción con la comunidad y reportes mensuales.',
-            price=800.00,
+            name='Community Management',
+            description='Gestión profesional de tus redes sociales con contenido original, programación estratégica y atención personalizada a tu comunidad.',
+            price=750.00,
             category='Redes Sociales'
         )
         service4 = Service.objects.create(
-            name='Optimización SEO',
-            description='Servicios de posicionamiento en buscadores. Auditoría técnica, optimización de contenido, estrategia de palabras clave y construcción de enlaces.',
-            price=1200.00,
+            name='Auditoría y Consultoría SEO',
+            description='Análisis profundo de tu sitio web para identificar oportunidades de mejora en el posicionamiento orgánico. Incluye informe detallado y plan de acción.',
+            price=950.00,
             category='SEO'
         )
         service5 = Service.objects.create(
-            name='Diseño Web',
-            description='Diseño y desarrollo de sitios web modernos y responsivos. Interfaces intuitivas, optimización de velocidad y experiencia de usuario excepcional.',
-            price=3000.00,
+            name='Desarrollo Web Profesional',
+            description='Creación de sitios web corporativos, tiendas online y plataformas a medida con las últimas tecnologías del mercado.',
+            price=3500.00,
             category='Desarrollo'
         )
         service6 = Service.objects.create(
-            name='Publicidad Online',
-            description='Campañas publicitarias en Google Ads, Facebook Ads, Instagram Ads y otras plataformas. Maximizamos tu retorno de inversión con estrategias basadas en datos.',
-            price=1800.00,
+            name='Publicidad Programática',
+            description='Campañas publicitarias automatizadas basadas en datos de audiencia. Segmentación precisa y optimización continua para maximizar el ROI.',
+            price=2100.00,
             category='Publicidad'
         )
 
         project1 = Project.objects.create(
-            title='Rediseño Web TechCorp',
-            description='Rediseño completo del sitio web corporativo con enfoque en experiencia de usuario, velocidad de carga y conversión de visitantes en clientes potenciales.',
+            title='Plataforma E-commerce InnovaTech',
+            description='Desarrollo de tienda online con catálogo dinámico, carrito de compras, pasarela de pago integrada y panel de administración de inventario.',
             date=timezone.now().date(),
             client=client1,
             service=service5
         )
         project2 = Project.objects.create(
-            title='Campaña de Moda Primavera',
-            description='Campaña integral de marketing para la colección de primavera incluyendo fotografía de producto, contenido para redes sociales y anuncios pagados.',
-            date=timezone.now().date() - timedelta(days=30),
+            title='Rebranding EstiloVivo',
+            description='Renovación completa de la imagen corporativa incluyendo nuevo logotipo, paleta cromática y campaña de lanzamiento multicanal.',
+            date=timezone.now().date() - timedelta(days=45),
             client=client2,
             service=service2
         )
         project3 = Project.objects.create(
-            title='SEO para Portal de Salud',
-            description='Optimización SEO completa para el portal de información de salud, logrando un aumento del 150% en tráfico orgánico en 3 meses.',
-            date=timezone.now().date() - timedelta(days=15),
+            title='Estrategia SEO para BioVida',
+            description='Implementación de estrategia SEO avanzada que posicionó al portal de salud en el top 3 de Google para más de 50 palabras clave del sector.',
+            date=timezone.now().date() - timedelta(days=20),
             client=client3,
             service=service4
         )
         project4 = Project.objects.create(
-            title='Estrategia Digital TechCorp',
-            description='Implementación de estrategia de marketing digital multicanal con enfoque en generación de leads y aumento de la presencia online.',
-            date=timezone.now().date() - timedelta(days=45),
+            title='Campaña Integración Digital InnovaTech',
+            description='Campaña 360° de transformación digital combinando publicidad online, email marketing automatizado y optimización de conversión.',
+            date=timezone.now().date() - timedelta(days=60),
             client=client1,
             service=service1
         )
 
         team1 = Team.objects.create(
-            name='Laura Sánchez',
-            role='Directora Creativa',
-            bio='Más de 10 años de experiencia en diseño creativo y dirección de arte para marcas internacionales. Especialista en branding y comunicación visual.',
-            url_picture='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400'
+            name='Andrea García',
+            role='Directora de Arte',
+            bio='Diseñadora gráfica con más de 12 años de experiencia en branding y dirección creativa. Ha trabajado con marcas como Nike, Zara y Movistar.',
+            url_picture='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400'
         )
         team2 = Team.objects.create(
-            name='Miguel Ángel Torres',
-            role='Director de Marketing',
-            bio='Experto en estrategias de marketing digital con experiencia en empresas Fortune 500. Especializado en growth hacking y analítica web.',
-            url_picture='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400'
+            name='Fernando Herrera',
+            role='Estratega Digital',
+            bio='Especialista en marketing digital con enfoque en数据分析 y optimización de campañas. Certificado en Google Ads y Facebook Blueprint.',
+            url_picture='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400'
         )
         team3 = Team.objects.create(
-            name='Elena Ruiz',
-            role='Especialista SEO',
-            bio='Certificada en Google Analytics y SEO técnico. Ha trabajado con más de 200 empresas para mejorar su posicionamiento en buscadores.',
-            url_picture='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400'
+            name='Camila Vargas',
+            role='Analista SEO Senior',
+            bio='Ingeniera informática especializada en posicionamiento web. Ha liderado proyectos SEO para más de 150 sitios web en toda Latinoamérica.',
+            url_picture='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400'
         )
         team4 = Team.objects.create(
-            name='Pablo Fernández',
-            role='Desarrollador Web Senior',
-            bio='Desarrollador full-stack con pasión por crear experiencias web excepcionales. Experto en React, Node.js y arquitecturas cloud.',
-            url_picture='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400'
+            name='Santiago Paredes',
+            role='Ingeniero de Software',
+            bio='Desarrollador full-stack con experiencia en React, Django y AWS. Apasionado por crear aplicaciones web escalables y de alto rendimiento.',
+            url_picture='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400'
         )
 
         blogpost1 = BlogPost.objects.create(
-            title='10 Consejos para Mejorar tu Marketing Digital',
-            content='En este artículo exploramos diez estrategias esenciales para mejorar tus esfuerzos de marketing digital. Desde la optimización de tu sitio web hasta la creación de contenido relevante, cubrimos todo lo que necesitas saber para destacar en el mundo digital. La clave está en entender a tu audiencia, crear contenido de valor y medir constantemente tus resultados para ajustar la estrategia.',
+            title='Guía Completa de Marketing Digital para Pymes',
+            content='Las pequeñas y medianas empresas tienen un enorme potencial en el mundo digital. En esta guía te explicamos paso a paso cómo crear una estrategia de marketing digital efectiva con presupuestos ajustados. Desde la elección de plataformas hasta la medición de resultados, cubrimos todos los aspectos fundamentales para que tu negocio despegue en internet.',
             author=admin_user,
             date_published=timezone.now().date(),
             category='Marketing'
         )
         blogpost2 = BlogPost.objects.create(
-            title='El Futuro de la Identidad de Marca',
-            content='La identidad de marca está evolucionando rápidamente. Descubre cómo las tendencias actuales en diseño, los cambios en el comportamiento del consumidor y las nuevas tecnologías están transformando la forma en que las marcas se comunican con su audiencia. Aprende a mantener tu marca relevante y conectar emocionalmente con tus clientes.',
+            title='Tendencias de Diseño Web para el 2025',
+            content='El diseño web sigue evolucionando a pasos agigantados. Este año las tendencias incluyen el uso de tipografías expresivas, animaciones sutiles, modo oscuro por defecto y experiencias hiperpersonalizadas. Descubre cómo aplicar estas tendencias para mantener tu sitio web moderno y competitivo.',
             author=admin_user,
             date_published=timezone.now().date() - timedelta(days=7),
             category='Diseño'
         )
         blogpost3 = BlogPost.objects.create(
-            title='Mejores Prácticas de SEO para 2024',
-            content='La optimización para motores de búsqueda continúa evolucionando. Estas son las últimas mejores prácticas que debes implementar: optimización Core Web Vitals, contenido E-E-A-T, estrategia de palabras clave long-tail, link building de calidad y optimización para búsqueda por voz. Mantente actualizado para no perder posiciones en los resultados.',
+            title='SEO Local: Cómo Atraer Clientes de tu Zona',
+            content='El SEO local es fundamental para negocios con presencia física. Aprende a optimizar tu ficha de Google My Business, conseguir reseñas positivas, crear contenido geolocalizado y aparecer en los resultados de búsqueda locales. Estrategias probadas para aumentar el tráfico de clientes cercanos.',
             author=client_user,
             date_published=timezone.now().date() - timedelta(days=14),
             category='SEO'
         )
         blogpost4 = BlogPost.objects.create(
-            title='Cómo Crear una Estrategia de Contenidos Exitosa',
-            content='Una estrategia de contenidos bien planificada es fundamental para el éxito de cualquier marca online. Aprende a definir tus objetivos, conocer a tu audiencia, crear un calendario editorial y medir el impacto de tus publicaciones. Incluye ejemplos prácticos y plantillas descargables.',
+            title='Automatización del Marketing: Ahorra Tiempo y Recursos',
+            content='La automatización del marketing permite a las empresas escalar sus esfuerzos sin multiplicar los recursos. Descubre las mejores herramientas para automatizar correos electrónicos, publicaciones en redes sociales, segmentación de audiencias y análisis de campañas. Incluye casos de éxito y recomendaciones prácticas.',
             author=admin_user,
-            date_published=timezone.now().date() - timedelta(days=21),
+            date_published=timezone.now().date() - timedelta(days=25),
             category='Marketing'
         )
 
         testimonial1 = UserTestimonial.objects.create(
             client=client1,
-            text='Oasis Promotions transformó completamente nuestra presencia digital. El equipo fue profesional, creativo y los resultados superaron nuestras expectativas. Nuestra tasa de conversión aumentó un 200% en solo 3 meses.',
+            text='El equipo de Oasis Promotions superó todas nuestras expectativas. Nuestra tienda online quedó espectacular y las ventas aumentaron un 300% en el primer trimestre. Sin duda, la mejor inversión que hemos hecho.',
             date=timezone.now().date(),
             project=project1
         )
         testimonial2 = UserTestimonial.objects.create(
             client=client2,
-            text='Increíbles resultados en nuestra campaña de moda. El equipo creativo captó perfectamente la esencia de nuestra marca y la tradujo en una campaña visualmente impactante. ¡Totalmente recomendados!',
-            date=timezone.now().date() - timedelta(days=10),
+            text='El rebranding transformó por completo la percepción de nuestra marca. Los clientes nos felicitan constantemente por nuestra nueva imagen. Muy agradecidos con todo el equipo creativo.',
+            date=timezone.now().date() - timedelta(days=15),
             project=project2
         )
         testimonial3 = UserTestimonial.objects.create(
             client=client3,
-            text='Gracias a la estrategia SEO de Oasis, nuestro portal de salud ahora aparece en las primeras posiciones de Google. El tráfico orgánico se triplicó y las consultas de pacientes aumentaron significativamente.',
-            date=timezone.now().date() - timedelta(days=5),
+            text='Pasamos de la página 10 al top 3 en Google gracias a la estrategia SEO de Oasis. El tráfico orgánico se multiplicó por cinco y ahora recibimos consultas de pacientes de toda España.',
+            date=timezone.now().date() - timedelta(days=8),
             project=project3
         )
 
         contact1 = Contact.objects.create(
-            name='Roberto Díaz',
-            email='roberto@email.com',
-            message='Estoy interesado en sus servicios de marketing digital para mi empresa de tecnología. Me gustaría recibir una cotización y agendar una reunión para discutir nuestros objetivos.',
+            name='Hugo Domínguez',
+            email='hugo@empresa.com',
+            message='Hola, soy el gerente de una cadena de restaurantes y estamos interesados en desarrollar una aplicación web para pedidos online. ¿Podrían darme una cotización?',
             date=timezone.now().date()
         )
         contact2 = Contact.objects.create(
-            name='Patricia Navarro',
-            email='patricia@email.com',
-            message='Necesito una cotización para el rediseño de nuestro sitio web corporativo. Somos una empresa del sector salud con presencia en toda España.',
-            date=timezone.now().date() - timedelta(days=2)
+            name='Daniela Paredes',
+            email='daniela@agencia.com',
+            message='Buenos días, me gustaría contratar sus servicios de community management para nuestra agencia de viajes. Necesitamos presencia activa en Instagram y TikTok.',
+            date=timezone.now().date() - timedelta(days=3)
         )
 
         campaign1 = Campaign.objects.create(
             client=client1,
             service=service1,
             start_date=timezone.now().date(),
-            end_date=timezone.now().date() + timedelta(days=30),
-            metrics={'impressions': 150000, 'clicks': 4500, 'conversions': 225}
+            end_date=timezone.now().date() + timedelta(days=45),
+            metrics={'impressions': 250000, 'clicks': 12000, 'conversions': 580}
         )
         campaign2 = Campaign.objects.create(
             client=client2,
-            service=service2,
-            start_date=timezone.now().date() - timedelta(days=10),
-            end_date=timezone.now().date() + timedelta(days=20),
-            metrics={'impressions': 85000, 'clicks': 2800, 'conversions': 140}
+            service=service3,
+            start_date=timezone.now().date() - timedelta(days=15),
+            end_date=timezone.now().date() + timedelta(days=15),
+            metrics={'impressions': 120000, 'clicks': 5400, 'conversions': 290}
         )
         campaign3 = Campaign.objects.create(
             client=client3,
             service=service4,
-            start_date=timezone.now().date() - timedelta(days=60),
-            end_date=timezone.now().date() + timedelta(days=30),
-            metrics={'impressions': 200000, 'clicks': 8000, 'conversions': 400}
+            start_date=timezone.now().date() - timedelta(days=90),
+            end_date=timezone.now().date() + timedelta(days=60),
+            metrics={'impressions': 350000, 'clicks': 18500, 'conversions': 920}
         )
 
         subscriber1 = Subscriber.objects.create(
-            email='suscriptor1@email.com',
+            email='usuario1@correo.com',
             date=timezone.now().date()
         )
         subscriber2 = Subscriber.objects.create(
-            email='suscriptor2@email.com',
-            date=timezone.now().date() - timedelta(days=5)
+            email='usuario2@correo.com',
+            date=timezone.now().date() - timedelta(days=7)
         )
         subscriber3 = Subscriber.objects.create(
-            email='suscriptor3@email.com',
-            date=timezone.now().date() - timedelta(days=10)
+            email='usuario3@correo.com',
+            date=timezone.now().date() - timedelta(days=14)
         )
         subscriber4 = Subscriber.objects.create(
-            email='suscriptor4@email.com',
-            date=timezone.now().date() - timedelta(days=15)
+            email='usuario4@correo.com',
+            date=timezone.now().date() - timedelta(days=21)
         )
 
         self.stdout.write(self.style.SUCCESS('¡Datos de prueba creados exitosamente!'))

@@ -1,6 +1,6 @@
 import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { LayoutDashboard, LogOut, ChevronRight, Wrench, FolderKanban, FileText, ArrowLeft, Users, UserCheck, Megaphone, Mail, MessageSquare, UserCog } from 'lucide-react';
+import { LayoutDashboard, LogOut, ChevronRight, Wrench, FolderKanban, FileText, ArrowLeft, Users, UserCheck, Megaphone, Mail, MessageSquare, UserCog, BarChart3 } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export function AdminLayout() {
@@ -13,6 +13,7 @@ export function AdminLayout() {
   };
 
   const navItems = [
+    { to: '/admin', label: 'Resumen', icon: BarChart3 },
     { to: '/admin/services', label: 'Servicios', icon: Wrench },
     { to: '/admin/projects', label: 'Proyectos', icon: FolderKanban },
     { to: '/admin/blogs', label: 'Publicaciones del Blog', icon: FileText },
@@ -87,7 +88,7 @@ export function AdminLayout() {
               <LayoutDashboard className="w-4 h-4" />
               <span>Administración</span>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-gray-900">{navItems.find(n => window.location.pathname.startsWith(n.to))?.label}</span>
+              <span className="text-gray-900">{navItems.find(n => n.to === '/admin' ? window.location.pathname === '/admin' : window.location.pathname.startsWith(n.to))?.label}</span>
             </div>
           </div>
         </header>

@@ -53,7 +53,7 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     role = models.CharField(max_length=100)
     bio = models.TextField()
-    url_picture = models.URLField(blank=True, null=True)
+    url_picture = models.URLField(max_length=500, blank=True, null=True)
 
     class Meta:
         db_table = 'team'

@@ -14,6 +14,7 @@ import { TeamPage } from '../../presentation/pages/public/TeamPage';
 import { TestimonialsPage } from '../../presentation/pages/public/TestimonialsPage';
 import { ContactPage } from '../../presentation/pages/public/ContactPage';
 import { DashboardPage } from '../../presentation/pages/dashboard/DashboardPage';
+import { AdminResumenPage } from '../../presentation/pages/admin/AdminResumenPage';
 import { AdminServicesPage } from '../../presentation/pages/admin/AdminServicesPage';
 import { AdminProjectsPage } from '../../presentation/pages/admin/AdminProjectsPage';
 import { AdminBlogsPage } from '../../presentation/pages/admin/AdminBlogsPage';
@@ -73,6 +74,7 @@ export function Router() {
             </ProtectedRoute>
           }
         >
+          <Route index element={<AdminResumenPage />} />
           <Route path="services" element={<AdminServicesPage />} />
           <Route path="projects" element={<AdminProjectsPage />} />
           <Route path="blogs" element={<AdminBlogsPage />} />

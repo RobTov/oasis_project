@@ -81,7 +81,7 @@ export function PublicLayout() {
                 <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-200">
                   <Link to="/login" className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium">Iniciar Sesión</Link>
                   <Link to="/register" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                    Comenzar
+                    Registrarse
                   </Link>
                 </div>
               )}

@@ -121,7 +121,7 @@ export function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Teléfono</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+53 5 0100235</p>
                     <p className="text-gray-600">Lun - Vie: 9:00 - 18:00</p>
                   </div>
                 </div>
@@ -132,8 +132,7 @@ export function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-1">Oficina</h3>
-                    <p className="text-gray-600">Av. Principal 1234</p>
-                    <p className="text-gray-600">Ciudad, País</p>
+                    <p className="text-gray-600">Holguín, Holguín</p>
                   </div>
                 </div>
               </div>
